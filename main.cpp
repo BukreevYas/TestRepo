@@ -1,16 +1,18 @@
 #include <iostream>
 
+bool isPyth(unsigned a, unsigned b, unsigned c);
+
 int main()
 {
     using u_t = unsigned;
 
-    u_t a = 0;
+    u_t a = 0, b = 0, c = 0;
 
     size_t count = 0;
 
     while (std::cin >> a)
     {
-        count++;
+        count += isPyth(a, b, c) ? 1 : 0;
     }
 
     if (std::cin.eof())
