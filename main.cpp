@@ -23,7 +23,7 @@ int main()
         }
         catch(const std::overflow_error& e)
         {
-            std::cerr << "One of the entered number is too big.\n";
+            std::cerr << "Some of the entered numbers are too big.\n";
             return 2;
         }
     }
@@ -46,12 +46,21 @@ bool isPyth(unsigned a, unsigned b, unsigned c)
 
     if (a > u_max / a || b > u_max / b || c > u_max / c)
     {
-        throw std::overflow_error("isPyth");
+        throw std::overflow_error("isPyth mul");
     }
 
-    bool p = a * a == b * b + c * c;
-    p = p || (b * b == a * a + c * c);
-    p = p || (c * c == a * a + b * b);
+    unsigned aSqr = a * a;
+    unsigned bSqr = b * b;
+    unsigned cSqr = c * c;
+
+    if (bSqr > u_max - cSqr || aSqr > u_max - cSqr || aSqr > u_max - bSqr)
+    {
+        throw std::overflow_error("isPyth add");
+    }
+
+    bool p = aSqr == bSqr + cSqr;
+    p = p || (bSqr == aSqr + cSqr);
+    p = p || (cSqr == aSqr + bSqr);
 
     return p;
 }
