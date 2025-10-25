@@ -6,4 +6,15 @@ int main()
 
     u_t a = 0;
     std::cin >> a;
+
+    if (std::cin.eof())
+    {
+        std::cout << 0;
+        std::cout << '\n';
+    }
+    else if (std::cin.fail())
+    {
+        std::cerr << "Input error.\n";
+        return 1;
+    }
 }
